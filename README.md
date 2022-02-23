@@ -1,15 +1,28 @@
-# JVerification-React-Native
+# Tongyuhu-JVerification-React-Native
+JVerification-React-Native 官方很久没更新了，内部SDK版本太老，我便fork 官方代码进行了升级。
+* 注意：安卓有一些配置UI的属性出现了变化。
+```
+这里数组中三个字段分别代表协议名称、协议地址、协议前面的分割符
+privacyNameAndUrlBeanList: [
+    { name: '用户协议', url: 'https://resource.caizhiji.com.cn/protocol/user-protocol.html', separator: '、', },
+    { name: '隐私政策', url: 'https://resource.caizhiji.com.cn/protocol/privacy-protocol.html', separator: '、', }
+],
+/**
+* 这个代表两个长度，分别代表首尾
+*/
+privacyText: ['登录即代表您已阅读并同意', '并授权采之汲获得本机号码'],
+```
 
 ## 1. 安装
 
 ```
-npm install jverification-react-native --save
+npm install tongyuhu-jverification-react-native --save
 ```
 
-* 注意：如果项目里没有jcore-react-native，需要安装
+* 注意：如果项目里没有tongyuhu-jcore-react-native，需要安装
 
   ```
-  npm install jcore-react-native --save
+  npm install tongyuhu-jcore-react-native --save
   ```
 
 ## 2. 配置
