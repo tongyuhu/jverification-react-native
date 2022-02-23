@@ -15,7 +15,7 @@
     "JVerification"
   ],
   "peerDependencies": {
-    "jcore-react-native": ">= 3.1.2",
+    "tongyuhu-jcore-react-native": ">= 3.1.2",
     "react-native": ">= 0.60"
   }
 }
