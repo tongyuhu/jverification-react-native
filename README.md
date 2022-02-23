@@ -4,13 +4,13 @@ JVerification-React-Native 官方很久没更新了，内部SDK版本太老，�
 ```
 这里数组中三个字段分别代表协议名称、协议地址、协议前面的分割符
 privacyNameAndUrlBeanList: [
-    { name: '用户协议', url: 'https://resource.caizhiji.com.cn/protocol/user-protocol.html', separator: '、', },
-    { name: '隐私政策', url: 'https://resource.caizhiji.com.cn/protocol/privacy-protocol.html', separator: '、', }
+    { name: '用户协议', url: 'https://xxx.html', separator: '、', },
+    { name: '隐私政策', url: 'https://xxx.html', separator: '、', }
 ],
 /**
 * 这个代表两个长度，分别代表首尾
 */
-privacyText: ['登录即代表您已阅读并同意', '并授权采之汲获得本机号码'],
+privacyText: ['登录即代表您已阅读并同意', '并授权xxx获得本机号码'],
 ```
 
 ## 1. 安装
@@ -47,18 +47,18 @@ npm install tongyuhu-jverification-react-native --save
   ```
   dependencies {
         ...
-        implementation project(':jverification-react-native') // 添加 jverification 依赖
-        implementation project(':jcore-react-native')         // 添加 jcore 依赖
+        implementation project(':tongyuhu-jverification-react-native') // 添加 jverification 依赖
+        implementation project(':tongyuhu-jcore-react-native')         // 添加 jcore 依赖
     }
   ```
 
 * setting.gradle
 
   ```
-  include ':jverification-react-native'
-  project(':jverification-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/jverification-react-native/android')
-  include ':jcore-react-native'
-  project(':jcore-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/jcore-react-native/android')
+  include ':tongyuhu-jverification-react-native'
+  project(':tongyuhu-jverification-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/tongyuhu-jverification-react-native/android')
+  include ':tongyuhu-jcore-react-native'
+  project(':tongyuhu-jcore-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/tongyuhu-jcore-react-native/android')
   ```
 
 ### 2.2 iOS
