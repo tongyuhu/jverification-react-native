@@ -20,6 +20,8 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.jiguang.plugins.verification.common.JConstans;
 import cn.jiguang.plugins.verification.common.JLogger;
@@ -27,6 +29,7 @@ import cn.jiguang.verifysdk.api.AuthPageEventListener;
 import cn.jiguang.verifysdk.api.JVerificationInterface;
 import cn.jiguang.verifysdk.api.JVerifyUIConfig;
 import cn.jiguang.verifysdk.api.PreLoginListener;
+import cn.jiguang.verifysdk.api.PrivacyBean;
 import cn.jiguang.verifysdk.api.RequestCallback;
 import cn.jiguang.verifysdk.api.VerifyListener;
 
@@ -377,7 +380,16 @@ public class JVerificationModule extends ReactContextBaseJavaModule {
         }
         if(readableMap.hasKey(JConstans.PRIVACY_TEXT)){
             ReadableArray array = readableMap.getArray(JConstans.PRIVACY_TEXT);
-            builder.setPrivacyText(array.getString(0),array.getString(1),array.getString(2),array.getString(3));
+            builder.setPrivacyText(array.getString(0),array.getString(1));
+        }
+        if(readableMap.hasKey(JConstans.PRIVACY_NAME_AND_URL_BEAN_LIST)){
+            ReadableArray array = readableMap.getArray(JConstans.PRIVACY_NAME_AND_URL_BEAN_LIST);
+            List<PrivacyBean> beanArrayList = new ArrayList<>();
+            for (int i = 0; i < array.size(); i++) {
+                ReadableMap map = array.getMap(i);
+                beanArrayList.add(new PrivacyBean(map.getString("name"),map.getString("url"),map.getString("separator")));
+            }
+            builder.setPrivacyNameAndUrlBeanList(beanArrayList);
         }
         if(readableMap.hasKey(JConstans.PRIVACY_TEXT_SIZE)){
             builder.setPrivacyTextSize(readableMap.getInt(JConstans.PRIVACY_TEXT_SIZE));
