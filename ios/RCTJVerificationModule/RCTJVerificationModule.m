@@ -86,6 +86,7 @@
 #define PRIVACY_TEXT_SIZE               @"privacyTextSize"          //隐私条款字体大小，默认12
 #define PRIVACY_TEXT_GRAVITY_MODE       @"privacyTextGravityMode"   //隐私条款文本对齐方式，目前仅支持 left、center
 #define PRIVACY_TEXT_GRAVITY_LEFT       @"left"                     //隐私条款文本对齐方式，目前仅支持 left、center
+#define PRIVACY_LINE_SPACING            @"privacyLineSpacing"       //行高
 #define PRIVACY_TEXT_GRAVITY_CENTER     @"center"                   //隐私条款文本对齐方式，目前仅支持 left、center
 #define PRIVACY_BOOK_SYMBOL_ENABLE      @"privacyBookSymbolEnable"  //隐私条款是否显示书名号，默认不显示
 #define PRIVACY_X                       @"privacyX"                 //隐私条款相对于屏幕左边x轴偏移
@@ -251,7 +252,7 @@ RCT_EXPORT_METHOD(getAuthorizationWithController: (BOOL *)enable)
         UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
         UIViewController *topVC = vc;
         if (topVC.presentedViewController) {
-            topVC = topVC.presentedViewController;
+            [topVC.presentedViewController dismissViewControllerAnimated:NO completion:nil];
         }
         [JVERIFICATIONService getAuthorizationWithController:topVC hide:enable completion:^(NSDictionary *result) {
             NSNumber *code = result[@"code"];
@@ -531,6 +532,13 @@ RCT_EXPORT_METHOD(setTimeWithConfig: (double)timeInter )
         }else{
             config.privacyTextAlignment = NSTextAlignmentLeft;
         }
+    }
+    if(configParams[PRIVACY_LINE_SPACING]){
+        double privacyLineSpacing = [configParams[PRIVACY_LINE_SPACING] doubleValue];
+        config.privacyLineSpacing = privacyLineSpacing;
+    }
+    else{
+        config.privacyLineSpacing = 5.0;
     }
     if([configParams[PRIVACY_BOOK_SYMBOL_ENABLE] isKindOfClass:[NSNumber class]]){
         config.privacyShowBookSymbol = [configParams[PRIVACY_BOOK_SYMBOL_ENABLE] boolValue];
