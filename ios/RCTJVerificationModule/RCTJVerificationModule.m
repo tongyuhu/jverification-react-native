@@ -100,6 +100,8 @@
 #define PRIVACY_CHECKED_IMAGE           @"privacyCheckedImage"      //checkBox选中时图片
 #define PRIVACY_UNCHECKED_IMAGE         @"privacyUncheckedImage"    //checkBox未选中时图片
 #define CHECK_VIEW_CONSTRAINTS          @"checkViewConstraints"     //checkBox布局对象
+#define CHECK_VIEW_SIZE                 @"privacyCheckboxSize"     //checkBox 大小
+
 //协议
 #define PRIVACY_WEB_NAV_COLOR           @"privacyWebNavColor"       //协议页导航栏背景颜色
 #define PRIVACY_WEB_NAV_TITLE           @"privacyWebNavTitle"       //协议页导航栏标题
@@ -583,6 +585,11 @@ RCT_EXPORT_METHOD(setTimeWithConfig: (double)timeInter )
 
     CGFloat privacyCheckboxW = config.uncheckedImg.size.width/2;
     CGFloat privacyCheckboxH = config.uncheckedImg.size.height/2;
+    if([configParams[CHECK_VIEW_SIZE] isKindOfClass:[NSNumber class]]) {
+        CGFloat size = [configParams[CHECK_VIEW_SIZE] floatValue];
+        privacyCheckboxW = size;
+        privacyCheckboxH = size;
+    }
     JVLayoutConstraint *constraintX = [JVLayoutConstraint constraintWithAttribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:JVLayoutItemPrivacy attribute:NSLayoutAttributeLeft multiplier:1 constant:-2-privacyCheckboxW];
     JVLayoutConstraint *constraintY = [JVLayoutConstraint constraintWithAttribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:JVLayoutItemPrivacy attribute:NSLayoutAttributeTop multiplier:1 constant:2];
     JVLayoutConstraint *constraintW = [JVLayoutConstraint constraintWithAttribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:JVLayoutItemNone attribute:NSLayoutAttributeWidth multiplier:1 constant:privacyCheckboxW];
